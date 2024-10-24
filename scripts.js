@@ -293,3 +293,32 @@ function saveMovieData(index) {
   // Redireciona para a página rent-dvds.html
   window.location.href = "rent-dvds.html"
 }
+
+const booksContainer = document.getElementById("books")
+
+// Usa forEach para iterar sobre cada livro e criar a estrutura HTML
+books.forEach((book, index) => {
+  // Cria uma nova div para cada livro
+  const bookDiv = document.createElement("div")
+  bookDiv.classList.add("books")
+
+  // Define o HTML dentro da div
+  bookDiv.innerHTML = `
+    <a class="card-img" href="#" onclick="saveBookData(${index})">
+      <img class="img-3" src="${book.img}" alt="${book.name}" />
+    </a>
+  `
+
+  // Adiciona a nova div ao container de Livros
+  booksContainer.appendChild(bookDiv)
+})
+
+// Função que salva os dados do livro no localStorage e redireciona
+function saveBookData(index) {
+  // Salva o livro no localStorage
+  localStorage.clear()
+  localStorage.setItem("selectedBook", JSON.stringify(books[index]))
+
+  // Redireciona para a página rent-books.html
+  window.location.href = "rent-books.html"
+}
