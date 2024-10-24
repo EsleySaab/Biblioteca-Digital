@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+a.links {
+  display: none;
+}
+
+body {
+  background-color: #e7e3e3;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 28rem;
+  width: 32rem;
+  background-color: rgba(248, 248, 248, 0.726);
+  border: solid 2px rgba(95, 95, 97, 0.24);
+  border-radius: 0.5rem;
+}
+
+.content h1 {
+  font-size: 3rem;
+  color: #035d6d;
+  margin-top: 1.5rem;
+}
+
+.line {
+  height: 1px;
+  width: 95%;
+  background-color: #035d6d;
+  margin: 1rem 0;
+}
+
+
+
+label {
+  color: #035d6d;
+  font-size: 1rem;
+}
+
+
+
+.checkbox-container {
+  display: flex;
+  margin-right: 54%;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+
+  & span {
+    color: #035d6d;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+  }
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.login {
+  background-color: #3498db; 
+  padding: .3rem 43%;        
+}
+
+

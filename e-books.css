@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #dfdddd;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+h2 {
+  color: white;
+}
+
+h3 {
+  color: black;
+  margin-left: 5.5rem;
+  margin-top: 2rem;
+}
+
+.category {
+  text-align: center;
+  align-items: center;
+  gap: 5rem;
+}
+
+a:focus {
+  outline: none;
+  color: inherit;
+  box-shadow: none;
+}
+
+.cardd {
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+.img-4 {
+  border: 2px solid rgb(235, 235, 28);
+  border-radius: .2rem;
+}
+
+.infos {
+  gap: 4rem;
+}
