@@ -197,6 +197,74 @@ const ebooks = [
   },
 ]
 
+const magazines = [
+  {
+    name: "Silvio Santos: O Rei da Televisão",
+    description:
+      "A edição especial da revista Caras destaca a vida e a trajetória de Silvio Santos, um dos maiores ícones da televisão brasileira. A matéria cobre desde seus primeiros passos como camelô até se tornar um dos empresários mais influentes do país e dono de um dos maiores impérios midiáticos, o SBT. O conteúdo explora sua personalidade carismática, momentos memoráveis da carreira, além de entrevistas exclusivas com amigos e familiares, celebrando a incrível história de vida do 'Rei da Televisão'.",
+    img: "https://m.media-amazon.com/images/I/81ek8u+AahL._SY385_.jpg",
+    author: "Revista Caras",
+    year: 2022,
+    genre: "Biografia, Entretenimento, Revista",
+    ISBN: "978-8575553031",
+  },
+
+  {
+    name: "O Recado das Urnas",
+    description:
+      "A edição especial da revista Veja analisa os resultados das últimas eleições no Brasil, destacando as mensagens claras enviadas pelos eleitores às urnas. Com uma cobertura detalhada do cenário político, a reportagem explora os vencedores e derrotados, as principais tendências eleitorais, e o impacto que esses resultados terão no futuro do país. A edição também traz entrevistas exclusivas com analistas políticos, candidatos e especialistas em ciência política, além de discutir os rumos da democracia brasileira.",
+    img: "https://m.media-amazon.com/images/I/51ojglARu1L._SY445_SX342_.jpg",
+    author: "Revista Veja",
+    year: 2023,
+    genre: "Política, Jornalismo, Revista",
+    ISBN: "978-8575553024",
+  },
+
+  {
+    name: "Eles Não Têm Medo do Escuro",
+    description:
+      "Nesta edição especial da revista Recreio, a matéria 'Eles Não Têm Medo do Escuro' explora o fascinante mundo dos animais que vivem e caçam na escuridão. A revista traz curiosidades sobre criaturas noturnas, como morcegos, corujas e outros seres adaptados à vida sem luz. Além disso, a edição inclui atividades interativas para as crianças, como jogos, desafios e experimentos científicos que ajudam a entender melhor o mundo noturno e seus mistérios.",
+    img: "https://m.media-amazon.com/images/I/51rISvUqR6L._SY445_SX342_.jpg",
+    author: "Revista Recreio",
+    year: 2021,
+    genre: "Infantil, Educação, Curiosidades",
+    ISBN: "978-8575553017",
+  },
+
+  {
+    name: "Mandioquinha: Muito Além da Sopa",
+    description:
+      "A edição especial da revista Vegetarianos traz como destaque a versatilidade da mandioquinha, um ingrediente comum na culinária brasileira, mas que vai muito além da sopa. A matéria explora diferentes formas de preparo, receitas criativas e os benefícios nutricionais desse tubérculo que ganha cada vez mais espaço na gastronomia vegetariana. Com receitas desde pratos principais até sobremesas, a revista convida o leitor a descobrir novas maneiras de incorporar a mandioquinha no dia a dia.",
+    img: "https://m.media-amazon.com/images/I/51g1uH-hFHL._SY445_SX342_.jpg",
+    author: "Revista Vegetarianos",
+    year: 2020,
+    genre: "Culinária, Nutrição, Revista",
+    ISBN: "978-8575553000",
+  },
+
+  {
+    name: "Investimentos Inteligentes",
+    description:
+      "Nesta edição especial, o renomado especialista em finanças pessoais, Gustavo Cerbasi, compartilha suas melhores estratégias e dicas para fazer investimentos inteligentes. A matéria cobre desde os primeiros passos para quem deseja começar a investir, até táticas avançadas para maximizar rendimentos. Com uma linguagem acessível e exemplos práticos, Cerbasi desmistifica o mundo dos investimentos e ensina como construir um futuro financeiro mais seguro e próspero.",
+    img: "https://m.media-amazon.com/images/I/81hxeX1RuRL._SY385_.jpg",
+    author: "Gustavo Cerbasi",
+    year: 2019,
+    genre: "Finanças, Investimentos, Revista",
+    ISBN: "978-8575552994",
+  },
+
+  {
+    name: "Crochê com Fios Barroco",
+    description:
+      "A edição especial da revista 'Crochê com Fios Barroco' traz inspirações e tutoriais para quem deseja criar peças incríveis usando os fios Barroco. Com projetos que vão desde itens decorativos para a casa até acessórios de moda, a revista oferece passo a passo detalhados, dicas de combinações de cores e truques para obter um acabamento perfeito. Ideal tanto para iniciantes quanto para crocheteiras experientes, essa edição destaca o charme e a versatilidade dos fios Barroco no universo do crochê.",
+    img: "https://m.media-amazon.com/images/I/51bahtauB7L._SY445_SX342_.jpg",
+    author: "Revista Crochê",
+    year: 2021,
+    genre: "Artesanato, Crochê, Revista",
+    ISBN: "978-8575552981",
+  },
+]
+
 const dvdsContainer = document.getElementById("dvds")
 
 // Usa forEach para iterar sobre cada filme e criar a estrutura HTML
