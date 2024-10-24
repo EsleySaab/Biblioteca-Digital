@@ -302,21 +302,21 @@ books.forEach((book, index) => {
   const bookDiv = document.createElement("div")
   bookDiv.classList.add("books")
 
-  // Define o HTML dentro da div
   bookDiv.innerHTML = `
-    <a class="card-img" href="#" onclick="saveBookData(${index})">
-      <img class="img-3" src="${book.img}" alt="${book.name}" />
-    </a>
-  `
+  <a class="card-img" href="#" onclick="saveBookData(${index})">
+    <img class="img-1" src="${book.img}" alt="${book.name}" />
+  </a>
+`
 
-  // Adiciona a nova div ao container de Livros
+  // Adiciona a nova div ao container de livros
   booksContainer.appendChild(bookDiv)
 })
 
 // Função que salva os dados do livro no localStorage e redireciona
 function saveBookData(index) {
-  // Salva o livro no localStorage
+  // Limpa o localStorage
   localStorage.clear()
+  // Salva o livro no localStorage
   localStorage.setItem("selectedBook", JSON.stringify(books[index]))
 
   // Redireciona para a página rent-books.html
