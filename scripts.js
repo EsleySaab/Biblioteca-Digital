@@ -322,3 +322,64 @@ function saveBookData(index) {
   // Redireciona para a página rent-books.html
   window.location.href = "rent-books.html"
 }
+
+
+
+const ebooksContainer = document.getElementById("ebooks")
+
+// Usa forEach para iterar sobre cada livro e criar a estrutura HTML
+ebooks.forEach((ebook, index) => {
+  // Cria uma nova div para cada livro
+  const bookDiv = document.createElement("div")
+  bookDiv.classList.add("books")
+
+  bookDiv.innerHTML = `
+  <a class="card-img" href="#" onclick="saveEbookData(${index})">
+    <img class="img-4" src="${ebook.img}" alt="${ebook.name}" />
+  </a>
+`
+
+  // Adiciona a nova div ao container de livros
+  ebooksContainer.appendChild(bookDiv)
+})
+
+// Função que salva os dados do livro no localStorage e redireciona
+function saveEbookData(index) {
+  // Limpa o localStorage
+  localStorage.clear()
+  // Salva o livro no localStorage
+  localStorage.setItem("selectedEbook", JSON.stringify(ebooks[index]))
+
+  // Redireciona para a página rent-books.html
+  window.location.href = "e-books.html"
+}
+
+
+const magazinesContainer = document.getElementById("magazines")
+
+// Usa forEach para iterar sobre cada filme e criar a estrutura HTML
+magazines.forEach((magazine, index) => {
+  // Cria uma nova div para cada filme
+  const bookDiv = document.createElement("div")
+  bookDiv.classList.add("books")
+
+  // Define o HTML dentro da div
+  bookDiv.innerHTML = `
+    <a class="card-img" href="#" onclick="saveMagazineData(${index})">
+      <img class="img-2" src="${magazine.img}" alt="${magazine.name}" />
+    </a>
+  `
+
+  // Adiciona a nova div ao container de DVDs
+  magazinesContainer.appendChild(bookDiv)
+})
+
+// Função que salva os dados do filme no localStorage e redireciona
+function saveMagazineData(index) {
+  // Salva o filme no localStorage
+  localStorage.clear()
+  localStorage.setItem("selectedMagazine", JSON.stringify(magazines[index]))
+
+  // Redireciona para a página rent-dvds.html
+  window.location.href = "rent-magazines.html"
+}
