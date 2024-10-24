@@ -3,7 +3,7 @@ const movies = [
     name: "Os Goonies",
     description:
       "Jovens encontram um misterioso mapa do tesouro e começam a seguir as pistas, entrando em um fabuloso mundo subterrâneo de passagens secretas, perigosas armadilhas e um antigo galeão pirata que esconde moedas de ouro.",
-    img: "https://m.media-amazon.com/images/I/81v9kAgiOaL._AC_SX569_.jpg",
+    img: "https://m.media-amazon.com/images/I/91ZDnHJlg1L._SX342_.jpg",
     director: "Richard Donner",
     year: 1985,
     genre: "Aventura",

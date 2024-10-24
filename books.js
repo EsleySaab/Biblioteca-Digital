@@ -13,8 +13,8 @@ if (selectedBook) {
           <img
             src="${selectedBook.img}"
             class="img-fluid rounded-start img-4"
-            style="border: 2px solid green;
-  border-radius: .2rem;"
+            style="border: 4px solid green;
+  border-radius: .7rem;"
             alt="${selectedBook.name}"
           />
         </div>

@@ -13,7 +13,7 @@ if (selectedMovie) {
       <img
         src="${selectedMovie.img}"
         class="img-fluid rounded-start img-4"
-        style="border: 2px solid #ce0cce; border-radius: .7rem;"
+        style="border: 4px solid #ce0cce; border-radius: .7rem;"
         alt="${selectedMovie.name}"
       />
     </div>
