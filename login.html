@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="content container">
+  <h1>Login</h1>
+  <div class="line"></div>
+
+  <div class="container mt-1">
+    <div class="form-group">
+      <label for="emailInput">Seu e-mail</label>
+      <input
+        type="email"
+        id="emailInput"
+        class="form-control"
+        placeholder="contato@gmail.com"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="container mt-0">
+    <div class="form-group">
+      <label for="passwordInput">Sua senha</label>
+      <input
+        type="password"
+        id="passwordInput"
+        class="form-control"
+        placeholder="Senha"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="container mt-0 ml-0">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        name="check"
+        id="check"
+      />
+      <label class="form-check-label" for="check"> Manter-me logado </label>
+    </div>
+  </div>
+  <button class="btn btn-primary mt-3 login" type="button" onclick="handleLogin()">
+    Login
+  </button>
+
+  <div class="convidado mt-2">
+    <a href="#" onclick="guestLogin()">Entrar como convidado</a>
+  </div>
+</div>
+  </body>
+  <script src="login.js"></script>
+</html>
