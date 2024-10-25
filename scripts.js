@@ -65,7 +65,7 @@ const books = [
   {
     name: "É assim que acaba",
     description:
-      "Da autora das séries Slammed e Hopeless. Um romance sobre as escolhas corretas nas situações mais difíceis. As coisas não foram sempre fáceis para Lily, mas isso nunca a impediu de conquistar a vida tão sonhada. Ela percorreu um longo caminho desde a infância, em uma cidadezinha no Maine: se formou em marketing, mudou para Boston e abriu a própria loja. Então, quando se sente atraída por um lindo neurocirurgião chamado Ryle Kincaid, tudo parece perfeito demais para ser verdade. Ryle é confiante, teimoso, talvez até um pouco arrogante e se sente atraído por Lily. Porém, sua grande aversão a relacionamentos é perturbadora. Além de estar sobrecarregada com as questões sobre seu novo relacionamento, Lily não consegue tirar Atlas Corrigan da cabeça — seu primeiro amor e a ligação com o passado que ela deixou para trás.",
+      "Da autora das séries Slammed e Hopeless. Um romance sobre as escolhas corretas nas situações mais difíceis. As coisas não foram sempre fáceis para Lily, mas isso nunca a impediu de conquistar a vida tão sonhada. Ela percorreu um longo caminho desde a infância, em uma cidadezinha no Maine: se formou em marketing, mudou para Boston e abriu a própria loja. Então, quando se sente atraída por um lindo neurocirurgião chamado Ryle Kincaid, tudo parece perfeito demais para ser verdade. Ryle é confiante, teimoso, talvez até um pouco arrogante e se sente atraído por Lily. Porém, sua grande aversão a relacionamentos é perturbadora.",
     img: "https://m.media-amazon.com/images/I/51i7kH+rh9L._SY445_SX342_.jpg",
     author: "Colleen Hoover",
     year: 2016,
@@ -267,38 +267,29 @@ const magazines = [
 
 const dvdsContainer = document.getElementById("dvds")
 
-// Usa forEach para iterar sobre cada filme e criar a estrutura HTML
 movies.forEach((movie, index) => {
-  // Cria uma nova div para cada filme
   const bookDiv = document.createElement("div")
   bookDiv.classList.add("books")
 
-  // Define o HTML dentro da div
   bookDiv.innerHTML = `
     <a class="card-img" href="#" onclick="saveMovieData(${index})">
       <img class="img-3" src="${movie.img}" alt="${movie.name}" />
     </a>
   `
 
-  // Adiciona a nova div ao container de DVDs
   dvdsContainer.appendChild(bookDiv)
 })
 
-// Função que salva os dados do filme no localStorage e redireciona
 function saveMovieData(index) {
-  // Salva o filme no localStorage
   localStorage.clear()
   localStorage.setItem("selectedMovie", JSON.stringify(movies[index]))
 
-  // Redireciona para a página rent-dvds.html
   window.location.href = "rent-dvds.html"
 }
 
 const booksContainer = document.getElementById("books")
 
-// Usa forEach para iterar sobre cada livro e criar a estrutura HTML
 books.forEach((book, index) => {
-  // Cria uma nova div para cada livro
   const bookDiv = document.createElement("div")
   bookDiv.classList.add("books")
 
@@ -308,18 +299,13 @@ books.forEach((book, index) => {
   </a>
 `
 
-  // Adiciona a nova div ao container de livros
   booksContainer.appendChild(bookDiv)
 })
 
-// Função que salva os dados do livro no localStorage e redireciona
 function saveBookData(index) {
-  // Limpa o localStorage
   localStorage.clear()
-  // Salva o livro no localStorage
   localStorage.setItem("selectedBook", JSON.stringify(books[index]))
 
-  // Redireciona para a página rent-books.html
   window.location.href = "rent-books.html"
 }
 
@@ -327,9 +313,7 @@ function saveBookData(index) {
 
 const ebooksContainer = document.getElementById("ebooks")
 
-// Usa forEach para iterar sobre cada livro e criar a estrutura HTML
 ebooks.forEach((ebook, index) => {
-  // Cria uma nova div para cada livro
   const bookDiv = document.createElement("div")
   bookDiv.classList.add("books")
 
@@ -339,47 +323,35 @@ ebooks.forEach((ebook, index) => {
   </a>
 `
 
-  // Adiciona a nova div ao container de livros
   ebooksContainer.appendChild(bookDiv)
 })
 
-// Função que salva os dados do livro no localStorage e redireciona
 function saveEbookData(index) {
-  // Limpa o localStorage
   localStorage.clear()
-  // Salva o livro no localStorage
   localStorage.setItem("selectedEbook", JSON.stringify(ebooks[index]))
 
-  // Redireciona para a página rent-books.html
   window.location.href = "e-books.html"
 }
 
 
 const magazinesContainer = document.getElementById("magazines")
 
-// Usa forEach para iterar sobre cada filme e criar a estrutura HTML
 magazines.forEach((magazine, index) => {
-  // Cria uma nova div para cada filme
   const bookDiv = document.createElement("div")
   bookDiv.classList.add("books")
 
-  // Define o HTML dentro da div
   bookDiv.innerHTML = `
     <a class="card-img" href="#" onclick="saveMagazineData(${index})">
       <img class="img-2" src="${magazine.img}" alt="${magazine.name}" />
     </a>
   `
 
-  // Adiciona a nova div ao container de DVDs
   magazinesContainer.appendChild(bookDiv)
 })
 
-// Função que salva os dados do filme no localStorage e redireciona
 function saveMagazineData(index) {
-  // Salva o filme no localStorage
   localStorage.clear()
   localStorage.setItem("selectedMagazine", JSON.stringify(magazines[index]))
 
-  // Redireciona para a página rent-dvds.html
   window.location.href = "rent-magazines.html"
 }

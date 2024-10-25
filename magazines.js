@@ -1,10 +1,7 @@
-// Recupera os dados do filme do localStorage
 const selectedMagazine = JSON.parse(localStorage.getItem("selectedMagazine"))
 
-// Seleciona o container onde os detalhes do filme serão exibidos
 const magazinesDetailsContainer = document.getElementById("magazines-details")
 
-// Verifica se há um filme salvo e exibe os detalhes
 if (selectedMagazine) {
   magazinesDetailsContainer.innerHTML = `
     <div class="card-body" style="max-width: 100%">
@@ -28,11 +25,39 @@ if (selectedMagazine) {
           <p class="card-text"><small class="text-body-secondary">Gênero: ${selectedMagazine.genre}</small></p>
           <p class="card-text"><small class="text-body-secondary">ISBN: ${selectedMagazine.ISBN}</small></p>
         </div>
+        <div class="d-flex" style="gap: 1rem;">
+        <button type="button" id="rentButton" class="btn btn-primary">Alugar</button>
+        <button type="button" id="returnButton" class="btn btn-secondary">Devolver</button>
       </div>
+      <div id="message" style="margin-top: 1rem; color: green;"></div> <!-- Container para a mensagem -->
+          </div>
     </div>
   </div>
 </div>
   `
+
+  const rentButton = document.getElementById("rentButton")
+  const returnButton = document.getElementById("returnButton")
+  const messageContainer = document.getElementById("message")
+
+  function showMessage(message) {
+    messageContainer.textContent = message
+    setTimeout(() => {
+      messageContainer.textContent = "" 
+    }, 1000)
+  }
+
+  rentButton.addEventListener("click", () => {
+    rentButton.disabled = true
+    returnButton.disabled = false
+    showMessage("Revista alugada com sucesso!")
+  })
+
+  returnButton.addEventListener("click", () => {
+    rentButton.disabled = false
+    returnButton.disabled = true
+    showMessage("Revista devolvida com sucesso!")
+  })
 } else {
-  magazinesDetailsContainer.innerHTML = "<p>Nenhum filme selecionado.</p>"
+  magazinesDetailsContainer.innerHTML = "<p>Nenhuma revista selecionada.</p>"
 }
