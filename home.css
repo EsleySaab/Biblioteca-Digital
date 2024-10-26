@@ -29,9 +29,13 @@ h3 {
 }
 
 .category {
-  text-align: center;
+  display: flex;
   align-items: center;
-  gap: 5rem;
+  justify-content: flex-start;
+  gap: 4rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
 }
 
 a:focus {
