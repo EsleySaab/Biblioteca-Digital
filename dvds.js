@@ -25,8 +25,8 @@ if (selectedMovie) {
           <p class="card-text"><small class="text-body-secondary">ISBN: ${selectedMovie.ISBN}</small></p>
         </div>
         <div class="d-flex" style="gap: 1rem;">
-        <button type="button" id="rentButton" class="btn btn-primary">Alugar</button>
-        <button type="button" id="returnButton" class="btn btn-secondary">Devolver</button>
+        <button type="button" id="rentButton" class="btn btn-primary" onclick="rentMovie()">Alugar</button>
+        <button type="button" id="returnButton" class="btn btn-secondary" onclick="returnMovie()">Devolver</button>
       </div>
       <div id="message" style="margin-top: 1rem; color: green;"></div> <!-- Container para a mensagem -->
           </div>
@@ -35,29 +35,59 @@ if (selectedMovie) {
 </div>
   `
 
-  const rentButton = document.getElementById("rentButton")
-  const returnButton = document.getElementById("returnButton")
-  const messageContainer = document.getElementById("message")
-
+  // Função para exibir a mensagem de sucesso e removê-la após 3 segundos
   function showMessage(message) {
+    const messageContainer = document.getElementById("message")
     messageContainer.textContent = message
     setTimeout(() => {
-      messageContainer.textContent = "" 
+      messageContainer.textContent = "" // Limpa a mensagem após 3 segundos
     }, 1000)
   }
 
-  rentButton.addEventListener("click", () => {
-    rentButton.disabled = true
-    returnButton.disabled = false
-    showMessage("Filme alugado com sucesso!")
-  })
+  const movies = JSON.parse(localStorage.getItem("movies")) || []
+  console.log(selectedMovie)
+  const rentedMovie = movies.find((movie) => movie.ISBN === selectedMovie.ISBN)
 
-  returnButton.addEventListener("click", () => {
-    rentButton.disabled = false
-    returnButton.disabled = true
-    showMessage("Filme devolvido com sucesso!")
-  })
+  if (rentedMovie && rentedMovie.rented) {
+    document.getElementById("rentButton").disabled = true
+  }
 
+  if (rentedMovie && !rentedMovie.rented) {
+    document.getElementById("returnButton").disabled = true
+  }
 } else {
   movieDetailsContainer.innerHTML = "<p>Nenhum filme selecionado.</p>"
+}
+
+
+function rentMovie() {
+  const selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"))
+  const movies = JSON.parse(localStorage.getItem("movies")) || []
+  const movieToRent = movies.find((movie) => movie.ISBN === selectedMovie.ISBN)
+  console.log(movieToRent)
+  if (movieToRent) {
+    if (!movieToRent.rented) {
+      movieToRent.rented = true
+      localStorage.setItem("movies", JSON.stringify(movies))
+      document.getElementById("rentButton").disabled = true
+      document.getElementById("returnButton").disabled = false
+      showMessage("Filme alugado com sucesso!")
+    }
+  }
+}
+
+function returnMovie() {
+  const selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"))
+  const movies = JSON.parse(localStorage.getItem("movies")) || []
+  const movieToReturn = movies.find((movie) => movie.ISBN === selectedMovie.ISBN)
+
+  if (movieToReturn) {
+    if (movieToReturn.rented) {
+      movieToReturn.rented = false
+      localStorage.setItem("movies", JSON.stringify(movies))
+      document.getElementById("rentButton").disabled = false
+      document.getElementById("returnButton").disabled = true
+      showMessage("Filme devolvido com sucesso!")
+    }
+  }
 }

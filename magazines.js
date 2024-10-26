@@ -26,8 +26,8 @@ if (selectedMagazine) {
           <p class="card-text"><small class="text-body-secondary">ISBN: ${selectedMagazine.ISBN}</small></p>
         </div>
         <div class="d-flex" style="gap: 1rem;">
-        <button type="button" id="rentButton" class="btn btn-primary">Alugar</button>
-        <button type="button" id="returnButton" class="btn btn-secondary">Devolver</button>
+        <button type="button" id="rentButton" class="btn btn-primary" onclick="rentMagazine()">Alugar</button>
+        <button type="button" id="returnButton" class="btn btn-secondary" onclick="returnMagazine()">Devolver</button>
       </div>
       <div id="message" style="margin-top: 1rem; color: green;"></div> <!-- Container para a mensagem -->
           </div>
@@ -36,28 +36,58 @@ if (selectedMagazine) {
 </div>
   `
 
-  const rentButton = document.getElementById("rentButton")
-  const returnButton = document.getElementById("returnButton")
-  const messageContainer = document.getElementById("message")
-
+  // Função para exibir a mensagem de sucesso e removê-la após 3 segundos
   function showMessage(message) {
+    const messageContainer = document.getElementById("message")
     messageContainer.textContent = message
     setTimeout(() => {
-      messageContainer.textContent = "" 
+      messageContainer.textContent = "" // Limpa a mensagem após 3 segundos
     }, 1000)
   }
 
-  rentButton.addEventListener("click", () => {
-    rentButton.disabled = true
-    returnButton.disabled = false
-    showMessage("Revista alugada com sucesso!")
-  })
+  const magazines = JSON.parse(localStorage.getItem("magazines")) || []
+  console.log(selectedMagazine)
+  const rentedMagazine = magazines.find((magazine) => magazine.ISBN === selectedMagazine.ISBN)
 
-  returnButton.addEventListener("click", () => {
-    rentButton.disabled = false
-    returnButton.disabled = true
-    showMessage("Revista devolvida com sucesso!")
-  })
+  if (rentedMagazine && rentedMagazine.rented) {
+    document.getElementById("rentButton").disabled = true
+  }
+
+  if (rentedMagazine && !rentedMagazine.rented) {
+    document.getElementById("returnButton").disabled = true
+  }
 } else {
-  magazinesDetailsContainer.innerHTML = "<p>Nenhuma revista selecionada.</p>"
+  magazinesDetailsContainer.innerHTML = "<p>Nenhum livro selecionado.</p>"
+}
+
+function rentMagazine() {
+  const selectedMagazine = JSON.parse(localStorage.getItem("selectedMagazine"))
+  const magazines = JSON.parse(localStorage.getItem("magazines")) || []
+  const magazineToRent = magazines.find((magazine) => magazine.ISBN === selectedMagazine.ISBN)
+  console.log(magazineToRent)
+  if (magazineToRent) {
+    if (!magazineToRent.rented) {
+      magazineToRent.rented = true
+      localStorage.setItem("magazines", JSON.stringify(magazines))
+      document.getElementById("rentButton").disabled = true
+      document.getElementById("returnButton").disabled = false
+      showMessage("Revista alugada com sucesso!")
+    }
+  }
+}
+
+function returnMagazine() {
+  const selectedMagazine = JSON.parse(localStorage.getItem("selectedMagazine"))
+  const magazines = JSON.parse(localStorage.getItem("magazines")) || []
+  const magazineToReturn = magazines.find((magazine) => magazine.ISBN === selectedMagazine.ISBN)
+
+  if (magazineToReturn) {
+    if (magazineToReturn.rented) {
+      magazineToReturn.rented = false
+      localStorage.setItem("magazines", JSON.stringify(magazines))
+      document.getElementById("rentButton").disabled = false
+      document.getElementById("returnButton").disabled = true
+      showMessage("Revista devolvida com sucesso!")
+    }
+  }
 }

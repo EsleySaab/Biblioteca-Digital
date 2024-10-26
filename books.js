@@ -2,7 +2,9 @@ const selectedBook = JSON.parse(localStorage.getItem("selectedBook"))
 
 const bookDetailsContainer = document.getElementById("books-details")
 
+// Verifica se há um livro salvo e exibe os detalhes
 if (selectedBook) {
+  // const index = books.findIndex((book) => book.ISBN === selectedBook.ISBN) // Encontre o índice do livro baseado no ISBN
   bookDetailsContainer.innerHTML = `
     <div class="card-body" style="max-width: 100%">
       <div class="row g-0">
@@ -26,8 +28,8 @@ if (selectedBook) {
               <p class="card-text"><small class="text-body-secondary">ISBN: ${selectedBook.ISBN}</small></p>
             </div>
             <div class="d-flex" style="gap: 1rem;">
-        <button type="button" id="rentButton" class="btn btn-primary">Alugar</button>
-        <button type="button" id="returnButton" class="btn btn-secondary">Devolver</button>
+        <button type="button" id="rentButton" class="btn btn-primary" onclick="rentBook()">Alugar</button>
+        <button type="button" id="returnButton" class="btn btn-secondary" onclick="returnBook()">Devolver</button>
           </div>
           <div id="message" style="margin-top: 1rem; color: green;"></div> <!-- Container para a mensagem -->
           </div>
@@ -36,30 +38,60 @@ if (selectedBook) {
     </div>
   `
 
-  
-  const rentButton = document.getElementById("rentButton")
-  const returnButton = document.getElementById("returnButton")
-  const messageContainer = document.getElementById("message")
-
+  // Função para exibir a mensagem de sucesso e removê-la após 3 segundos
   function showMessage(message) {
+    const messageContainer = document.getElementById("message")
     messageContainer.textContent = message
     setTimeout(() => {
-      messageContainer.textContent = ""
+      messageContainer.textContent = "" // Limpa a mensagem após 3 segundos
     }, 1000)
   }
 
-  rentButton.addEventListener("click", () => {
-    rentButton.disabled = true
-    returnButton.disabled = false
-    showMessage("Livro alugado com sucesso!")
-  })
+  const books = JSON.parse(localStorage.getItem("books")) || []
+  console.log(selectedBook)
+  const rentedBook = books.find((book) => book.ISBN === selectedBook.ISBN)
 
-  returnButton.addEventListener("click", () => {
-    rentButton.disabled = false
-    returnButton.disabled = true
-    showMessage("Livro devolvido com sucesso!")
-  })
+  if (rentedBook && rentedBook.rented) {
+    document.getElementById("rentButton").disabled = true
+  }
 
+  if (rentedBook && !rentedBook.rented) {
+    document.getElementById("returnButton").disabled = true
+  }
 } else {
   bookDetailsContainer.innerHTML = "<p>Nenhum livro selecionado.</p>"
+}
+
+
+function rentBook() {
+  const selectedbBook = JSON.parse(localStorage.getItem("selectedBook"))
+  const books = JSON.parse(localStorage.getItem("books")) || []
+  const bookToRent = books.find((book) => book.ISBN === selectedbBook.ISBN)
+  console.log(bookToRent)
+  if (bookToRent) {
+    if (!bookToRent.rented) {
+      bookToRent.rented = true
+      localStorage.setItem("books", JSON.stringify(books))
+      document.getElementById("rentButton").disabled = true
+      document.getElementById("returnButton").disabled = false
+      showMessage("Livro alugado com sucesso!")
+     
+    }
+  }
+}
+
+function returnBook() {
+  const selectedbBook = JSON.parse(localStorage.getItem("selectedBook"))
+  const books = JSON.parse(localStorage.getItem("books")) || []
+  const bookToReturn = books.find((book) => book.ISBN === selectedbBook.ISBN)
+
+  if (bookToReturn) {
+    if (bookToReturn.rented) {
+      bookToReturn.rented = false
+      localStorage.setItem("books", JSON.stringify(books))
+      document.getElementById("rentButton").disabled = false
+      document.getElementById("returnButton").disabled = true
+      showMessage("Livro devolvido com sucesso!")
+    }
+  }
 }

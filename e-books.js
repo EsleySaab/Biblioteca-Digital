@@ -26,8 +26,8 @@ if (selectedEbook) {
           <p class="card-text"><small class="text-body-secondary">ISBN: ${selectedEbook.ISBN}</small></p>
         </div>
         <div class="d-flex" style="gap: 1rem;">
-        <button type="button" id="rentButton" class="btn btn-primary">Alugar</button>
-        <button type="button" id="returnButton" class="btn btn-secondary">Devolver</button>
+        <button type="button" id="rentButton" class="btn btn-primary" onclick="rentEbook()">Alugar</button>
+        <button type="button" id="returnButton" class="btn btn-secondary" onclick="returnEbook()">Devolver</button>
         </div>
         <div id="message" style="margin-top: 1rem; color: green;"></div> <!-- Container para a mensagem -->
           </div>
@@ -37,31 +37,60 @@ if (selectedEbook) {
 </div>
   `
 
-  
-  const rentButton = document.getElementById("rentButton")
-  const returnButton = document.getElementById("returnButton")
-  const messageContainer = document.getElementById("message")
-
-  
+  // Função para exibir a mensagem de sucesso e removê-la após 3 segundos
   function showMessage(message) {
+    const messageContainer = document.getElementById("message")
     messageContainer.textContent = message
     setTimeout(() => {
-      messageContainer.textContent = "" 
+      messageContainer.textContent = "" // Limpa a mensagem após 3 segundos
     }, 1000)
   }
 
-  rentButton.addEventListener("click", () => {
-    rentButton.disabled = true
-    returnButton.disabled = false
-    showMessage("E-book alugado com sucesso!")
-  })
+  const ebooks = JSON.parse(localStorage.getItem("ebooks")) || []
+  console.log(selectedEbook)
+  const rentedEbook = ebooks.find((ebook) => ebook.ISBN === selectedEbook.ISBN)
 
-  returnButton.addEventListener("click", () => {
-    rentButton.disabled = false
-    returnButton.disabled = true
-    showMessage("E-book devolvido com sucesso!")
-  })
+  if (rentedEbook && rentedEbook.rented) {
+    document.getElementById("rentButton").disabled = true
+  }
 
+  if (rentedEbook && !rentedEbook.rented) {
+    document.getElementById("returnButton").disabled = true
+  }
 } else {
   ebooksDetailsContainer.innerHTML = "<p>Nenhum E-book selecionado.</p>"
+}
+
+function rentEbook() {
+  const selectedEbook = JSON.parse(localStorage.getItem("selectedEbook"))
+  const ebooks = JSON.parse(localStorage.getItem("ebooks")) || []
+  const ebookToRent = ebooks.find((ebook) => ebook.ISBN === selectedEbook.ISBN)
+  console.log(ebookToRent)
+  if (ebookToRent) {
+    if (!ebookToRent.rented) {
+      ebookToRent.rented = true
+      localStorage.setItem("ebooks", JSON.stringify(ebooks))
+      document.getElementById("rentButton").disabled = true
+      document.getElementById("returnButton").disabled = false
+      showMessage("E-book alugado com sucesso!")
+    }
+  }
+}
+
+function returnEbook() {
+  const selectedEbook = JSON.parse(localStorage.getItem("selectedEbook"))
+  const ebooks = JSON.parse(localStorage.getItem("ebooks")) || []
+  const ebookToReturn = ebooks.find(
+    (ebook) => ebook.ISBN === selectedEbook.ISBN
+  )
+
+  if (ebookToReturn) {
+    if (ebookToReturn.rented) {
+      ebookToReturn.rented = false
+      localStorage.setItem("ebooks", JSON.stringify(ebooks))
+      document.getElementById("rentButton").disabled = false
+      document.getElementById("returnButton").disabled = true
+      showMessage("E-book devolvido com sucesso!")
+    }
+  }
 }

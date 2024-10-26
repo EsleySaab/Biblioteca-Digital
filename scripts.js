@@ -8,6 +8,7 @@ const movies = [
     year: 1985,
     genre: "Aventura",
     ISBN: "978-0736430507",
+    rented: false,
   },
   {
     name: "Batman: Assault on Arkham",
@@ -18,6 +19,7 @@ const movies = [
     year: 2014,
     genre: "Animação, Ação, Crime",
     ISBN: "978-1401250833",
+    rented: false,
   },
   {
     name: "Os Garotos Perdidos",
@@ -28,6 +30,7 @@ const movies = [
     year: 1987,
     genre: "Terror, Comédia",
     ISBN: "978-0446353477",
+    rented: false,
   },
   {
     name: "De Volta para o Futuro",
@@ -38,6 +41,7 @@ const movies = [
     year: 1985,
     genre: "Ficção Científica, Aventura",
     ISBN: "978-0553340196",
+    rented: false,
   },
   {
     name: "Scarface",
@@ -48,6 +52,7 @@ const movies = [
     year: 1983,
     genre: "Policial, Drama",
     ISBN: "978-0393356811",
+    rented: false,
   },
   {
     name: "O Mágico de Oz",
@@ -58,6 +63,7 @@ const movies = [
     year: 1939,
     genre: "Aventura, Fantasia",
     ISBN: "978-1783293698",
+    rented: false,
   },
 ]
 
@@ -71,6 +77,7 @@ const books = [
     year: 2016,
     genre: "Romance",
     ISBN: "978-8501112514",
+    rented: false,
   },
 
   {
@@ -82,6 +89,7 @@ const books = [
     year: 2007,
     genre: "Mitologia Grega, romance",
     ISBN: "978-6555606546",
+    rented: false,
   },
 
   {
@@ -93,6 +101,7 @@ const books = [
     year: 2022,
     genre: "Romance",
     ISBN: "978-6559811397",
+    rented: false,
   },
 
   {
@@ -104,6 +113,7 @@ const books = [
     year: 1943,
     genre: "Fábula, literatura infantil",
     ISBN: "978-8501062176",
+    rented: false,
   },
 
   {
@@ -115,6 +125,7 @@ const books = [
     year: 1865,
     genre: "Romance, literatura brasileira",
     ISBN: "978-8508114182",
+    rented: false,
   },
 
   {
@@ -126,6 +137,7 @@ const books = [
     year: 1888,
     genre: "Romance, literatura brasileira",
     ISBN: "978-8508120879",
+    rented: false,
   },
 ]
 
@@ -139,6 +151,7 @@ const ebooks = [
     year: 2018,
     genre: "Graphic Novel, Romance, Jovem Adulto",
     ISBN: "978-8555341618",
+    rented: false,
   },
 
   {
@@ -150,6 +163,7 @@ const ebooks = [
     year: 1997,
     genre: "Fantasia, Literatura Infantojuvenil",
     ISBN: "978-8544000398",
+    rented: false,
   },
 
   {
@@ -161,6 +175,7 @@ const ebooks = [
     year: 2012,
     genre: "Ficção, Romance, Literatura Jovem Adulto",
     ISBN: "978-8580576512",
+    rented: false,
   },
 
   {
@@ -172,6 +187,7 @@ const ebooks = [
     year: 1996,
     genre: "Romance, Ficção",
     ISBN: "978-6555091994",
+    rented: false,
   },
 
   {
@@ -183,6 +199,7 @@ const ebooks = [
     year: 1999,
     genre: "Ficção, Literatura Jovem Adulto",
     ISBN: "978-8501083479",
+    rented: false,
   },
 
   {
@@ -194,6 +211,7 @@ const ebooks = [
     year: 1995,
     genre: "Ação, Fantasia Sombria, Manga",
     ISBN: "978-3570507311",
+    rented: false,
   },
 ]
 
@@ -207,6 +225,7 @@ const magazines = [
     year: 2022,
     genre: "Biografia, Entretenimento, Revista",
     ISBN: "978-8575553031",
+    rented: false,
   },
 
   {
@@ -218,6 +237,7 @@ const magazines = [
     year: 2023,
     genre: "Política, Jornalismo, Revista",
     ISBN: "978-8575553024",
+    rented: false,
   },
 
   {
@@ -229,6 +249,7 @@ const magazines = [
     year: 2021,
     genre: "Infantil, Educação, Curiosidades",
     ISBN: "978-8575553017",
+    rented: false,
   },
 
   {
@@ -240,6 +261,7 @@ const magazines = [
     year: 2020,
     genre: "Culinária, Nutrição, Revista",
     ISBN: "978-8575553000",
+    rented: false,
   },
 
   {
@@ -251,6 +273,7 @@ const magazines = [
     year: 2019,
     genre: "Finanças, Investimentos, Revista",
     ISBN: "978-8575552994",
+    rented: false,
   },
 
   {
@@ -262,6 +285,7 @@ const magazines = [
     year: 2021,
     genre: "Artesanato, Crochê, Revista",
     ISBN: "978-8575552981",
+    rented: false,
   },
 ]
 
@@ -270,6 +294,10 @@ const dvdsContainer = document.getElementById("dvds")
 movies.forEach((movie, index) => {
   const bookDiv = document.createElement("div")
   bookDiv.classList.add("books")
+  const moviesAlreadySaved = JSON.parse(localStorage.getItem("movies"))
+  if (!moviesAlreadySaved) {
+    localStorage.setItem("movies", JSON.stringify(movies))
+  }
 
   bookDiv.innerHTML = `
     <a class="card-img" href="#" onclick="saveMovieData(${index})">
@@ -281,7 +309,7 @@ movies.forEach((movie, index) => {
 })
 
 function saveMovieData(index) {
-  localStorage.clear()
+  // localStorage.clear()
   localStorage.setItem("selectedMovie", JSON.stringify(movies[index]))
 
   window.location.href = "rent-dvds.html"
@@ -290,6 +318,10 @@ function saveMovieData(index) {
 const booksContainer = document.getElementById("books")
 
 books.forEach((book, index) => {
+  const booksAlreadySaved = JSON.parse(localStorage.getItem("books"))
+  if (!booksAlreadySaved) {
+    localStorage.setItem("books", JSON.stringify(books))
+  }
   const bookDiv = document.createElement("div")
   bookDiv.classList.add("books")
 
@@ -303,19 +335,21 @@ books.forEach((book, index) => {
 })
 
 function saveBookData(index) {
-  localStorage.clear()
   localStorage.setItem("selectedBook", JSON.stringify(books[index]))
 
   window.location.href = "rent-books.html"
 }
-
-
 
 const ebooksContainer = document.getElementById("ebooks")
 
 ebooks.forEach((ebook, index) => {
   const bookDiv = document.createElement("div")
   bookDiv.classList.add("books")
+  const ebooksAlreadySaved = JSON.parse(localStorage.getItem("ebooks"))
+  if (!ebooksAlreadySaved) {
+    localStorage.setItem("ebooks", JSON.stringify(ebooks))
+  }
+  
 
   bookDiv.innerHTML = `
   <a class="card-img" href="#" onclick="saveEbookData(${index})">
@@ -327,18 +361,21 @@ ebooks.forEach((ebook, index) => {
 })
 
 function saveEbookData(index) {
-  localStorage.clear()
+  // localStorage.clear()
   localStorage.setItem("selectedEbook", JSON.stringify(ebooks[index]))
 
   window.location.href = "e-books.html"
 }
-
 
 const magazinesContainer = document.getElementById("magazines")
 
 magazines.forEach((magazine, index) => {
   const bookDiv = document.createElement("div")
   bookDiv.classList.add("books")
+  const magazinesAlreadySaved = JSON.parse(localStorage.getItem("magazines"))
+  if (!magazinesAlreadySaved) {
+    localStorage.setItem("magazines", JSON.stringify(magazines))
+  }
 
   bookDiv.innerHTML = `
     <a class="card-img" href="#" onclick="saveMagazineData(${index})">
@@ -350,7 +387,7 @@ magazines.forEach((magazine, index) => {
 })
 
 function saveMagazineData(index) {
-  localStorage.clear()
+  // localStorage.clear()
   localStorage.setItem("selectedMagazine", JSON.stringify(magazines[index]))
 
   window.location.href = "rent-magazines.html"
