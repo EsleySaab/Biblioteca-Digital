@@ -19,8 +19,13 @@ h2 {
 
 h3 {
   color: black;
-  margin-left: 5.5rem;
+  margin-left: 4.5rem;
   margin-top: 2rem;
+}
+
+.title h3 {
+  margin-top: 1rem;
+  margin-left: -1rem;
 }
 
 .category {
@@ -36,8 +41,9 @@ a:focus {
 }
 
 .cards {
+  display: flex;
   margin-top: 1rem;
-  margin-left: 5.5rem;
+  justify-content: center;
   margin-bottom: 3rem;
 }
 
@@ -97,4 +103,8 @@ img {
 
 .card-img:hover .img-4 {
   transform: scale(1.1); /* Ampliar a imagem em 10% */
+}
+
+.category a {
+  text-decoration: none;
 }

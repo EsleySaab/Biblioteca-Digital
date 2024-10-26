@@ -42,9 +42,13 @@ a:focus {
 
 .img-3 {
   border: 2px solid #ce0cce;
-  border-radius: .7rem;
+  border-radius: 0.7rem;
 }
 
 .infos {
   gap: 3rem;
+}
+
+.category a {
+  text-decoration: none;
 }

@@ -48,3 +48,7 @@ a:focus {
 .infos {
   gap: 4rem;
 }
+
+.category a {
+  text-decoration: none;
+}
